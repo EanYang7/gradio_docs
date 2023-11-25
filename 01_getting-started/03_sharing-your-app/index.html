@@ -1,0 +1,1399 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="gradio_docs">
+      
+      
+        <meta name="author" content="Ean Yang">
+      
+      
+        <link rel="canonical" href="https://eanyang7.github.io/gradio_docs/01_getting-started/03_sharing-your-app/">
+      
+      
+        <link rel="prev" href="../02_key-features/">
+      
+      
+        <link rel="next" href="../../02_building-interfaces/01_interface-state/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.jpg">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.12">
+    
+    
+      
+        <title>Sharing Your App - gradio 文档教程</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fad675c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sharing-your-app" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="gradio 文档教程" class="md-header__button md-logo" aria-label="gradio 文档教程" data-md-component="logo">
+      
+  <img src="../../assets/logo.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            gradio 文档教程
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sharing Your App
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-purple"  aria-label="切换为暗黑模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换为暗黑模式" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="red"  aria-label="切换为浅色模式"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="切换为浅色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/EanYang7/gradio_docs" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    github仓库
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="gradio 文档教程" class="md-nav__button md-logo" aria-label="gradio 文档教程" data-md-component="logo">
+      
+  <img src="../../assets/logo.jpg" alt="logo">
+
+    </a>
+    gradio 文档教程
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/EanYang7/gradio_docs" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    github仓库
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing a Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    01 getting started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            01 getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_quickstart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quickstart
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_key-features/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Key Features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Sharing Your App
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Sharing Your App
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sharing-demos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sharing Demos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hosting-on-hf-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hosting on HF Spaces
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embedding-hosted-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Hosted Spaces
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Embedding Hosted Spaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedding-with-web-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding with Web Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-with-iframes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding with IFrames
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Page
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#password-protected-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Password-protected app
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oauth-login-via-hugging-face" class="md-nav__link">
+    <span class="md-ellipsis">
+      OAuth (Login via Hugging Face)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-network-request-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing the Network Request Directly
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mounting-within-another-fastapi-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mounting Within Another FastAPI App
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-and-file-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security and File Access
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../02_building-interfaces/01_interface-state/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    02 building interfaces
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../03_building-with-blocks/01_blocks-and-event-listeners/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    03 building with blocks
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../04_chatbots/01_creating-a-chatbot-fast/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    04 chatbots
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../05_custom-components/01_custom-components-in-five-minutes/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    05 custom components
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../06_integrating-other-frameworks/01_using-hugging-face-integrations/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    06 integrating other frameworks
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../07_tabular-data-science-and-plots/01_connecting-to-a-database/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    07 tabular data science and plots
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../08_client-libraries/01_getting-started-with-the-python-client/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    08 client libraries
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../09_other-tutorials/create-your-own-friends-with-a-gan/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    09 other tutorials
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../cn/CONTRIBUTING/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Cn
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sharing-demos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sharing Demos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hosting-on-hf-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hosting on HF Spaces
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embedding-hosted-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Hosted Spaces
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Embedding Hosted Spaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedding-with-web-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding with Web Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-with-iframes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding with IFrames
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Page
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#password-protected-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Password-protected app
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oauth-login-via-hugging-face" class="md-nav__link">
+    <span class="md-ellipsis">
+      OAuth (Login via Hugging Face)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-network-request-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing the Network Request Directly
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mounting-within-another-fastapi-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mounting Within Another FastAPI App
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-and-file-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security and File Access
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/EanYang7/gradio_docs/tree/main/docs/01_getting-started/03_sharing-your-app.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/EanYang7/gradio_docs/tree/main/docs/01_getting-started/03_sharing-your-app.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+    </a>
+  
+
+
+<h1 id="sharing-your-app">Sharing Your App<a class="headerlink" href="#sharing-your-app" title="Permanent link">⚓︎</a></h1>
+<p>How to share your Gradio app:</p>
+<ol>
+<li><a href="#sharing-demos">Sharing demos with the share parameter</a></li>
+<li><a href="#hosting-on-hf-spaces">Hosting on HF Spaces</a></li>
+<li><a href="#embedding-hosted-spaces">Embedding hosted spaces</a></li>
+<li><a href="#embedding-with-web-components">Embedding with web components</a></li>
+<li><a href="#api-page">Using the API page</a></li>
+<li><a href="#authentication">Adding authentication to the page</a></li>
+<li><a href="#accessing-the-network-request-directly">Accessing network requests</a></li>
+<li><a href="#mounting-within-another-fast-api-app">Mounting within FastAPI</a></li>
+<li><a href="#security-and-file-access">Security and file access</a></li>
+</ol>
+<h2 id="sharing-demos">Sharing Demos<a class="headerlink" href="#sharing-demos" title="Permanent link">⚓︎</a></h2>
+<p>Gradio demos can be easily shared publicly by setting <code>share=True</code> in the <code>launch()</code> method. Like this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">share</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p>This generates a public, shareable link that you can send to anybody! When you send this link, the user on the other side can try out the model in their browser. Because the processing happens on your device (as long as your device stays on!), you don't have to worry about any packaging any dependencies. A share link usually looks something like this: <strong>https://07ff8706ab.gradio.live</strong>. Although the link is served through the Gradio Share Servers, these servers are only a proxy for your local server, and do not store any data sent through your app. </p>
+<p>Keep in mind that share links are publicly accessible, meaning that anyone can use your model for prediction! Therefore, make sure not to expose any sensitive information through the functions you write, or allow any critical changes to occur on your device. If you set <code>share=False</code> (the default, except in colab notebooks), only a local link is created, which can be shared by <a href="https://www.ssh.com/ssh/tunneling/example">port-forwarding</a> with specific users. </p>
+<p><img alt="sharing" src="https://github.com/gradio-app/gradio/blob/main/guides/assets/sharing.svg?raw=true" /></p>
+<p>Share links expire after 72 hours. (Note: it is <a href="https://github.com/huggingface/frp/">also possible to set up your own Share Server</a> to overcome this restriction.)</p>
+<h2 id="hosting-on-hf-spaces">Hosting on HF Spaces<a class="headerlink" href="#hosting-on-hf-spaces" title="Permanent link">⚓︎</a></h2>
+<p>If you'd like to have a permanent link to your Gradio demo on the internet, use Hugging Face Spaces. <a href="http://huggingface.co/spaces/">Hugging Face Spaces</a> provides the infrastructure to permanently host your machine learning model for free!</p>
+<p>After you have <a href="https://huggingface.co/join">created a free Hugging Face account</a>, you have three methods to deploy your Gradio app to Hugging Face Spaces:</p>
+<ol>
+<li>
+<p>From terminal: run <code>gradio deploy</code> in your app directory. The CLI will gather some basic metadata and then launch your app. To update your space, you can re-run this command or enable the Github Actions option to automatically update the Spaces on <code>git push</code>.</p>
+</li>
+<li>
+<p>From your browser: Drag and drop a folder containing your Gradio model and all related files <a href="https://huggingface.co/new-space">here</a>.</p>
+</li>
+<li>
+<p>Connect Spaces with your Git repository and Spaces will pull the Gradio app from there. See <a href="https://huggingface.co/blog/gradio-spaces">this guide how to host on Hugging Face Spaces</a> for more information.</p>
+</li>
+</ol>
+<video autoplay muted loop>
+  <source src="https://github.com/gradio-app/gradio/blob/main/guides/assets/hf_demo.mp4?raw=true" type="video/mp4" />
+</video>
+
+<p>Note: Some components, like <code>gr.Image</code>, will display a "Share" button only on Spaces, so that users can share the generated output to the Discussions page of the Space easily. You can disable this with <code>show_share_button</code>, such as <code>gr.Image(show_share_button=False)</code>.</p>
+<p><img alt="Image with show_share_button=True" src="https://github.com/gradio-app/gradio/blob/main/guides/assets/share_icon.png?raw=true" /></p>
+<h2 id="embedding-hosted-spaces">Embedding Hosted Spaces<a class="headerlink" href="#embedding-hosted-spaces" title="Permanent link">⚓︎</a></h2>
+<p>Once you have hosted your app on Hugging Face Spaces (or on your own server), you may want to embed the demo on a different website, such as your blog or your portfolio. Embedding an interactive demo allows people to try out the machine learning model that you have built, without needing to download or install anything — right in their browser! The best part is that you can embed interactive demos even in static websites, such as GitHub pages.</p>
+<p>There are two ways to embed your Gradio demos. You can find quick links to both options directly on the Hugging Face Space page, in the "Embed this Space" dropdown option:</p>
+<p><img alt="Embed this Space dropdown option" src="https://github.com/gradio-app/gradio/blob/main/guides/assets/embed_this_space.png?raw=true" /></p>
+<h3 id="embedding-with-web-components">Embedding with Web Components<a class="headerlink" href="#embedding-with-web-components" title="Permanent link">⚓︎</a></h3>
+<p>Web components typically offer a better experience to users than IFrames. Web components load lazily, meaning that they won't slow down the loading time of your website, and they automatically adjust their height based on the size of the Gradio app.</p>
+<p>To embed with Web Components:</p>
+<ol>
+<li>Import the gradio JS library into into your site by adding the script below in your site (replace {GRADIO_VERSION} in the URL with the library version of Gradio you are using).</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span>
+    <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span>
+    <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://gradio.s3-us-west-2.amazonaws.com/{GRADIO_VERSION}/gradio.js&quot;</span>
+<span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div>
+<ol>
+<li>Add</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">gradio-app</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://$your_space_host.hf.space&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">gradio-app</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>element where you want to place the app. Set the <code>src=</code> attribute to your Space's embed URL, which you can find in the "Embed this Space" button. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">gradio-app</span>
+    <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://abidlabs-pytorch-image-classifier.hf.space&quot;</span>
+<span class="p">&gt;&lt;/</span><span class="nt">gradio-app</span><span class="p">&gt;</span>
+</code></pre></div>
+<script>
+fetch("https://pypi.org/pypi/gradio/json"
+).then(r => r.json()
+).then(obj => {
+    let v = obj.info.version;
+    content = document.querySelector('.prose');
+    content.innerHTML = content.innerHTML.replaceAll("{GRADIO_VERSION}", v);
+});
+</script>
+
+<p>You can see examples of how web components look <a href="https://www.gradio.app">on the Gradio landing page</a>.</p>
+<p>You can also customize the appearance and behavior of your web component with attributes that you pass into the <code>&lt;gradio-app&gt;</code> tag:</p>
+<ul>
+<li><code>src</code>: as we've seen, the <code>src</code> attributes links to the URL of the hosted Gradio demo that you would like to embed</li>
+<li><code>space</code>: an optional shorthand if your Gradio demo is hosted on Hugging Face Space. Accepts a <code>username/space_name</code> instead of a full URL. Example: <code>gradio/Echocardiogram-Segmentation</code>. If this attribute attribute is provided, then <code>src</code> does not need to be provided.</li>
+<li><code>control_page_title</code>: a boolean designating whether the html title of the page should be set to the title of the Gradio app (by default <code>"false"</code>)</li>
+<li><code>initial_height</code>: the initial height of the web component while it is loading the Gradio app, (by default <code>"300px"</code>). Note that the final height is set based on the size of the Gradio app.</li>
+<li><code>container</code>: whether to show the border frame and information about where the Space is hosted (by default <code>"true"</code>)</li>
+<li><code>info</code>: whether to show just the information about where the Space is hosted underneath the embedded app (by default <code>"true"</code>)</li>
+<li><code>autoscroll</code>: whether to autoscroll to the output when prediction has finished (by default <code>"false"</code>)</li>
+<li><code>eager</code>: whether to load the Gradio app as soon as the page loads (by default <code>"false"</code>)</li>
+<li><code>theme_mode</code>: whether to use the <code>dark</code>, <code>light</code>, or default <code>system</code> theme mode (by default <code>"system"</code>)</li>
+<li><code>render</code>: an event that is triggered once the embedded space has finished rendering.</li>
+</ul>
+<p>Here's an example of how to use these attributes to create a Gradio app that does not lazy load and has an initial height of 0px.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">gradio-app</span>
+    <span class="na">space</span><span class="o">=</span><span class="s">&quot;gradio/Echocardiogram-Segmentation&quot;</span>
+    <span class="na">eager</span><span class="o">=</span><span class="s">&quot;true&quot;</span>
+    <span class="na">initial_height</span><span class="o">=</span><span class="s">&quot;0px&quot;</span>
+<span class="p">&gt;&lt;/</span><span class="nt">gradio-app</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Here's another example of how to use the <code>render</code> event. An event listener is used to capture the <code>render</code> event and will call the <code>handleLoadComplete()</code> function once rendering is complete. </p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">handleLoadComplete</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Embedded space has finished rendering&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">gradioApp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;gradio-app&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">gradioApp</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;render&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">handleLoadComplete</span><span class="p">);</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div>
+<p><em>Note: While Gradio's CSS will never impact the embedding page, the embedding page can affect the style of the embedded Gradio app. Make sure that any CSS in the parent page isn't so general that it could also apply to the embedded Gradio app and cause the styling to break. Element selectors such as <code>header { ... }</code> and <code>footer { ... }</code> will be the most likely to cause issues.</em></p>
+<h3 id="embedding-with-iframes">Embedding with IFrames<a class="headerlink" href="#embedding-with-iframes" title="Permanent link">⚓︎</a></h3>
+<p>To embed with IFrames instead (if you cannot add javascript to your website, for example), add this element:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://$your_space_host.hf.space&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Again, you can find the <code>src=</code> attribute to your Space's embed URL, which you can find in the "Embed this Space" button.</p>
+<p>Note: if you use IFrames, you'll probably want to add a fixed <code>height</code> attribute and set <code>style="border:0;"</code> to remove the boreder. In addition, if your app requires permissions such as access to the webcam or the microphone, you'll need to provide that as well using the <code>allow</code> attribute.</p>
+<h2 id="api-page">API Page<a class="headerlink" href="#api-page" title="Permanent link">⚓︎</a></h2>
+<p>You can use almost any Gradio app as an API! In the footer of a Gradio app <a href="https://huggingface.co/spaces/gradio/hello_world">like this one</a>, you'll see a "Use via API" link.</p>
+<p><img alt="Use via API" src="https://github.com/gradio-app/gradio/blob/main/guides/assets/use_via_api.png?raw=true" /></p>
+<p>This is a page that lists the endpoints that can be used to query the Gradio app, via our supported clients: either <a href="https://gradio.app/guides/getting-started-with-the-python-client/">the Python client</a>, or <a href="https://gradio.app/guides/getting-started-with-the-js-client/">the JavaScript client</a>. For each endpoint, Gradio automatically generates the parameters and their types, as well as example inputs.</p>
+<p>The endpoints are automatically created when you launch a Gradio <code>Interface</code>. If you are using Gradio <code>Blocks</code>, you can also set up a Gradio API page, though we recommend that you explicitly name each event listener, such as</p>
+<div class="highlight"><pre><span></span><code><span class="n">btn</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="p">[</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">],</span> <span class="n">output</span><span class="p">,</span> <span class="n">api_name</span><span class="o">=</span><span class="s2">&quot;addition&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>This will add and document the endpoint <code>/api/addition/</code> to the automatically generated API page. Otherwise, your API endpoints will appear as "unnamed" endpoints.</p>
+<p><em>Note</em>: For Gradio apps in which <a href="https://gradio.app/guides/key-features#queuing">queueing is enabled</a>, users can bypass the queue if they make a POST request to your API endpoint. To disable this behavior, set <code>api_open=False</code> in the <code>queue()</code> method. To disable the API page altogether, set <code>show_api=False</code> in <code>.launch()</code>.</p>
+<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">⚓︎</a></h2>
+<h3 id="password-protected-app">Password-protected app<a class="headerlink" href="#password-protected-app" title="Permanent link">⚓︎</a></h3>
+<p>You may wish to put an authentication page in front of your app to limit who can open your app. With the <code>auth=</code> keyword argument in the <code>launch()</code> method, you can provide a tuple with a username and password, or a list of acceptable username/password tuples; Here's an example that provides password-based authentication for a single user named "admin":</p>
+<div class="highlight"><pre><span></span><code><span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span> <span class="s2">&quot;pass1234&quot;</span><span class="p">))</span>
+</code></pre></div>
+<p>For more complex authentication handling, you can even pass a function that takes a username and password as arguments, and returns True to allow authentication, False otherwise. This can be used for, among other things, making requests to 3rd-party authentication services.</p>
+<p>Here's an example of a function that accepts any login where the username and password are the same:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">same_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">username</span> <span class="o">==</span> <span class="n">password</span>
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="n">same_auth</span><span class="p">)</span>
+</code></pre></div>
+<p>For authentication to work properly, third party cookies must be enabled in your browser.
+This is not the case by default for Safari, Chrome Incognito Mode.</p>
+<h3 id="oauth-login-via-hugging-face">OAuth (Login via Hugging Face)<a class="headerlink" href="#oauth-login-via-hugging-face" title="Permanent link">⚓︎</a></h3>
+<p>Gradio supports OAuth login via Hugging Face. This feature is currently <strong>experimental</strong> and only available on Spaces.
+If allows to add a <em>"Sign in with Hugging Face"</em> button to your demo. Check out <a href="https://huggingface.co/spaces/Wauplin/gradio-oauth-demo">this Space</a>
+for a live demo.</p>
+<p>To enable OAuth, you must set <code>hf_oauth: true</code> as a Space metadata in your README.md file. This will register your Space
+as an OAuth application on Hugging Face. Next, you can use <code>gr.LoginButton</code> and <code>gr.LogoutButton</code> to add login and logout buttons to
+your Gradio app. Once a user is logged in with their HF account, you can retrieve their profile by adding a parameter of type
+<code>gr.OAuthProfile</code> to any Gradio function. The user profile will be automatically injected as a parameter value.</p>
+<p>Here is a short example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+
+<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">profile</span><span class="p">:</span> <span class="n">gr</span><span class="o">.</span><span class="n">OAuthProfile</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">profile</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;I don&#39;t know you.&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Hello </span><span class="si">{</span><span class="n">profile</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="n">gr</span><span class="o">.</span><span class="n">LoginButton</span><span class="p">()</span>
+    <span class="n">gr</span><span class="o">.</span><span class="n">LogoutButton</span><span class="p">()</span>
+    <span class="n">gr</span><span class="o">.</span><span class="n">Markdown</span><span class="p">()</span><span class="o">.</span><span class="n">attach_load_event</span><span class="p">(</span><span class="n">hello</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<p>When the user clicks on the login button, they get redirected in a new page to authorize your Space.</p>
+<p><img alt="Allow Space app" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/gradio-guides/oauth_sign_in.png" /></p>
+<p>Users can revoke access to their profile at any time in their <a href="https://huggingface.co/settings/connected-applications">settings</a>.</p>
+<p>As seen above, OAuth features are available only when your app runs in a Space. However, you often need to test your app
+locally before deploying it. To help with that, the <code>gr.LoginButton</code> is mocked. When a user clicks on it, they are
+automatically logged in with a fake user profile. This allows you to debug your app before deploying it to a Space.</p>
+<h2 id="accessing-the-network-request-directly">Accessing the Network Request Directly<a class="headerlink" href="#accessing-the-network-request-directly" title="Permanent link">⚓︎</a></h2>
+<p>When a user makes a prediction to your app, you may need the underlying network request, in order to get the request headers (e.g. for advanced authentication), log the client's IP address, getting the query parameters, or for other reasons. Gradio supports this in a similar manner to FastAPI: simply add a function parameter whose type hint is <code>gr.Request</code> and Gradio will pass in the network request as that parameter. Here is an example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">def</span> <span class="nf">echo</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">gr</span><span class="o">.</span><span class="n">Request</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">request</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Request headers dictionary:&quot;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IP address:&quot;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">host</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Query parameters:&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">text</span>
+
+<span class="n">io</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">echo</span><span class="p">,</span> <span class="s2">&quot;textbox&quot;</span><span class="p">,</span> <span class="s2">&quot;textbox&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+<p>Note: if your function is called directly instead of through the UI (this happens, for
+example, when examples are cached, or when the Gradio app is called via API), then <code>request</code> will be <code>None</code>. 
+You should handle this case explicitly to ensure that your app does not throw any errors. That is why
+we have the explicit check <code>if request</code>.</p>
+<h2 id="mounting-within-another-fastapi-app">Mounting Within Another FastAPI App<a class="headerlink" href="#mounting-within-another-fastapi-app" title="Permanent link">⚓︎</a></h2>
+<p>In some cases, you might have an existing FastAPI app, and you'd like to add a path for a Gradio demo.
+You can easily do this with <code>gradio.mount_gradio_app()</code>.</p>
+<p>Here's a complete example:</p>
+<p>$code_custom_path</p>
+<p>Note that this approach also allows you run your Gradio apps on custom paths (<code>http://localhost:8000/gradio</code> in the example above).</p>
+<h2 id="security-and-file-access">Security and File Access<a class="headerlink" href="#security-and-file-access" title="Permanent link">⚓︎</a></h2>
+<p>Sharing your Gradio app with others (by hosting it on Spaces, on your own server, or through temporary share links) <strong>exposes</strong> certain files on the host machine to users of your Gradio app.</p>
+<p>In particular, Gradio apps ALLOW users to access to three kinds of files:</p>
+<ul>
+<li>
+<p><strong>Temporary files created by Gradio.</strong> These are files that are created by Gradio as part of running your prediction function. For example, if your prediction function returns a video file, then Gradio will save that video to a temporary cache on your device and then send the path to the file to the front end. You can customize the location of cache files created by Gradio by setting the environment variable <code>GRADIO_TEMP_DIR</code> to an absolute path, such as <code>/home/usr/scripts/project/temp/</code>.</p>
+</li>
+<li>
+<p><strong>Cached examples created by Gradio.</strong> These are files that are created by Gradio as part of caching examples for faster runtimes, if you set <code>cache_examples=True</code> in <code>gr.Interface()</code> or in <code>gr.Examples()</code>. These files are saved in the <code>gradio_cached_examples/</code> subdirectory within your app's working directory.</p>
+</li>
+<li>
+<p><strong>Files that you explicitly allow via the <code>allowed_paths</code> parameter in <code>launch()</code></strong>. This parameter allows you to pass in a list of additional directories or exact filepaths you'd like to allow users to have access to. (By default, this parameter is an empty list).</p>
+</li>
+</ul>
+<p>Gradio DOES NOT ALLOW access to:</p>
+<ul>
+<li>
+<p><strong>Files that you explicitly block via the <code>blocked_paths</code> parameter in <code>launch()</code></strong>. You can pass in a list of additional directories or exact filepaths to the <code>blocked_paths</code> parameter in <code>launch()</code>. This parameter takes precedence over the files that Gradio exposes by default or by the <code>allowed_paths</code>.</p>
+</li>
+<li>
+<p><strong>Any other paths on the host machine</strong>. Users should NOT be able to access other arbitrary paths on the host.</p>
+</li>
+</ul>
+<p>Please make sure you are running the latest version of <code>gradio</code> for these security settings to apply.</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 25, 2023</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 25, 2023</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../02_key-features/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Key Features">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Key Features
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../02_building-interfaces/01_interface-state/" class="md-footer__link md-footer__link--next" aria-label="下一页: Interface State">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Interface State
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 Ean Yang
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/YQisme" target="_blank" rel="noopener" title="github主页" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://space.bilibili.com/244185393?spm_id_from=333.788.0.0" target="_blank" rel="noopener" title="b站主页" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0s16.1 2.868 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0c8.8 0 16.1 2.868 21.9 8.603 5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1zm-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8 6.3-6.5 9.7-14.3 10.1-23.5V173.8zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5-9.6 0-17.5-3.2-23.6-9.5-6.1-6.3-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2 6.3-6.3 13.2-9.6 23.3-10 9.2.4 17 3.7 23.3 10zm191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.1 6.3-14 9.5-23.6 9.5-9.6 0-17.4-3.2-23.6-9.5-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2 6.3-6.3 14.1-9.6 23.3-10 9.2.4 17 3.7 23.3 10z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://eanyang7.com" target="_blank" rel="noopener" title="个人主页" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M112 48a48 48 0 1 1 96 0 48 48 0 1 1-96 0zm40 304v128c0 17.7-14.3 32-32 32s-32-14.3-32-32V256.9l-28.6 47.6c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l58.3-97c17.4-28.9 48.6-46.6 82.3-46.6h29.7c33.7 0 64.9 17.7 82.3 46.6l58.3 97c9.1 15.1 4.2 34.8-10.9 43.9s-34.8 4.2-43.9-10.9L232 256.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V352h-16z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.prune", "navigation.top", "toc.follow", "header.autohide", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6c14ae12.min.js"></script>
+      
+    
+  </body>
+</html>
